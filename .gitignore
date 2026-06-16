@@ -22,6 +22,25 @@ iconcache.db
 [Tt]emp/
 [Tt]emporary Internet Files/
 [Ww]indows/[Tt]emp/
+docs/
+not*/
+
+# Arquivos outputs do Abaqus
+*.odb
+*.dat
+*.msg
+*.sta
+*.log
+*.fil
+*.res
+*.abq
+*.pac
+*.sel
+*.stt
+*.mdl
+*.prt
+*.023
+*.ipm
 
 # Configurações de ambiente do Windows
 .vscode/
