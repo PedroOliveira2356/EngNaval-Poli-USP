@@ -1,0 +1,13 @@
+Geometria,,,,Material,Steel
+H1 [m],1.0,,,Mod Young [GPa],206000000000.0
+H2 [m],4.5,,,Poisson,0.3
+H3 [m],3.5,,,Densidade [kg/m3],7800.0
+Largura [m],8.0,,,,
+Raio do canto [m],0.8,,,,
+Comprimento SM [m],24.0,,,,
+Distância entre cavernas [m],2.0,,,,
+,,,,,
+Logarina fundo,0.2,0.07,,,
+Longarina costado,0.25,0.1,,,
+Longarina teto,0.16,0.04,,,
+Espessuras [mm],[12.0,14.0,15.0,16.0],,,,
