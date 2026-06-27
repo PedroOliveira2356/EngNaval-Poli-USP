@@ -15,11 +15,14 @@ from abaqus import *
 from odbAccess import *
 
 import os
+from pathlib import Path
+
 # import numpy as np
 # import matplotlib.pyplot as plt
 import csv
 
 # Change work directory
+# Basedir = Path(__file__).parent
 Basedir = r"C:\repos\EngNaval-Poli-USP\Mecânica de Estruturas II\Abaqus\Midship section"
 # os.makedirs(os.path.join(Basedir, "results"), exist_ok=True)
 # os.chdir(os.path.join(Basedir, "results"))

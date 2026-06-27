@@ -22,6 +22,7 @@ line; the drawing is built by analysing each tuple independently.
 
 import os
 import csv
+from pathlib import Path
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -29,10 +30,11 @@ import matplotlib.pyplot as plt
 # --------------------------------------------------------------------------- #
 #  GLOBAL PARAMETERS FROM INPUT FILE                                          #
 # --------------------------------------------------------------------------- #
-Basedir = r"C:\repos\EngNaval-Poli-USP\Mecânica de Estruturas II\Projeto Final\Abaqus modeling"
+# Basedir = r"C:\repos\EngNaval-Poli-USP\Mecânica de Estruturas II\Projeto Final\Abaqus modeling"
+Basedir = Path(__file__).parent
 
-with open(os.path.join(Basedir, "inputs.csv"), 'r', encoding='utf-8') as f:
-    reader = csv.reader(f, delimiter=',')
+with open(os.path.join(Basedir, "inputs.csv"), "r", encoding="utf-8") as f:
+    reader = csv.reader(f, delimiter=",")
     linhas = list(reader)
 
 
@@ -40,17 +42,17 @@ with open(os.path.join(Basedir, "inputs.csv"), 'r', encoding='utf-8') as f:
 #   branch1 = the FIRST branch  (grows from the line, along the normal)
 #   branch2 = the SECOND branch (grows from the first branch's tip; per arm)
 BRANCH_SIZES = {
-    "T":  {"branch1": float(linhas[12][1]), "branch2": float(linhas[12][2])},
-    "L1": {"branch1": float(linhas[13][1]), "branch2": float(linhas[13][2])},
-    "L2": {"branch1": float(linhas[13][1]), "branch2": float(linhas[13][2])},
+    "T": {"branch1": float(linhas[10][1]), "branch2": float(linhas[10][2])},
+    "L1": {"branch1": float(linhas[11][1]), "branch2": float(linhas[11][2])},
+    "L2": {"branch1": float(linhas[11][1]), "branch2": float(linhas[11][2])},
 }
 
 
-DEFAULT_N      = 0          # default number of interior points per line
-DEFAULT_SHAPE  = "T"        # default second-branch shape: 'T', 'L1', 'L2'
+DEFAULT_N = 0  # default number of interior points per line
+DEFAULT_SHAPE = "T"  # default second-branch shape: 'T', 'L1', 'L2'
 
-MIRROR_Y       = True       # reflect the whole drawing across the y-axis
-SHOW_NORMAL    = False      # also draw the line's normal as an arrow
+MIRROR_Y = False  # reflect the whole drawing across the y-axis
+SHOW_NORMAL = False  # also draw the line's normal as an arrow
 
 # Every drawing is described here. Each element is one INDEPENDENT line:
 #     (point_a, point_b, N, shape)
@@ -64,16 +66,16 @@ LINE_SEGMENTS = [
 ]
 
 # styling
-MAIN_COLOR     = "#222222"
-BRANCH1_COLOR  = "#1f77b4"
-BRANCH2_COLOR  = "#d62728"
-NORMAL_COLOR   = "#9467bd"
-POINT_COLOR    = "#2ca02c"
-MIRROR_ALPHA   = 0.40       # transparency of the mirrored twin
-MAIN_WIDTH     = 1.0
-BRANCH_WIDTH   = 1.0
-POINT_SIZE     = 35
-FIG_SIZE       = (9, 9)
+MAIN_COLOR = "#222222"
+BRANCH1_COLOR = "#1f77b4"
+BRANCH2_COLOR = "#d62728"
+NORMAL_COLOR = "#9467bd"
+POINT_COLOR = "#2ca02c"
+MIRROR_ALPHA = 0.40  # transparency of the mirrored twin
+MAIN_WIDTH = 1.0
+BRANCH_WIDTH = 1.0
+POINT_SIZE = 10
+FIG_SIZE = (9, 9)
 
 
 # --------------------------------------------------------------------------- #
@@ -120,7 +122,7 @@ def branch_lengths(shape):
 def interior_points(a, b, n):
     """N points evenly spread on a->b, with both endpoints excluded."""
     a, b = _arr(a), _arr(b)
-    fracs = np.arange(1, n + 1) / (n + 1)      # i/(n+1) for i = 1..n
+    fracs = np.arange(1, n + 1) / (n + 1)  # i/(n+1) for i = 1..n
     return [a + f * (b - a) for f in fracs]
 
 
@@ -128,6 +130,7 @@ def interior_points(a, b, n):
 #  BRANCH CONSTRUCTION                                                        #
 # --------------------------------------------------------------------------- #
 # A segment is a dict: {"p1": ndarray, "p2": ndarray, "kind": str}
+
 
 def build_branches(point, normal, shape):
     """
@@ -143,21 +146,21 @@ def build_branches(point, normal, shape):
     segs = [{"p1": point, "p2": tip, "kind": "branch1"}]
 
     # second branch is perpendicular to the first == normal rotated +/-90 deg
-    perp_plus  = rotate(normal, +90)    # 'L1' direction
-    perp_minus = rotate(normal, -90)    # 'L2' direction
+    perp_plus = rotate(normal, +90)  # 'L1' direction
+    perp_minus = rotate(normal, -90)  # 'L2' direction
 
     if shape == "T":
-        segs.append({"p1": tip + l2 * perp_minus,
-                     "p2": tip + l2 * perp_plus,
-                     "kind": "branch2"})
+        segs.append(
+            {
+                "p1": tip + l2 * perp_minus / 2,
+                "p2": tip + l2 * perp_plus / 2,
+                "kind": "branch2",
+            }
+        )
     elif shape == "L1":
-        segs.append({"p1": tip,
-                     "p2": tip + l2 * perp_plus,
-                     "kind": "branch2"})
+        segs.append({"p1": tip, "p2": tip + l2 * perp_plus, "kind": "branch2"})
     elif shape == "L2":
-        segs.append({"p1": tip,
-                     "p2": tip + l2 * perp_minus,
-                     "kind": "branch2"})
+        segs.append({"p1": tip, "p2": tip + l2 * perp_minus, "kind": "branch2"})
 
     return segs
 
@@ -177,9 +180,7 @@ def build_line_segments(a, b, n, shape):
     if SHOW_NORMAL:
         l1, _ = branch_lengths(shape)
         mid = 0.5 * (a + b)
-        segments.append({"p1": mid,
-                         "p2": mid + l1 * normal,
-                         "kind": "normal"})
+        segments.append({"p1": mid, "p2": mid + l1 * normal, "kind": "normal"})
 
     for p in pts:
         segments.extend(build_branches(p, normal, shape))
@@ -190,18 +191,20 @@ def build_line_segments(a, b, n, shape):
 def mirror_segments(segments):
     """Reflect a list of segments across the y-axis (x -> -x)."""
     flip = np.array([-1.0, 1.0])
-    return [{"p1": s["p1"] * flip, "p2": s["p2"] * flip, "kind": s["kind"]}
-            for s in segments]
+    return [
+        {"p1": s["p1"] * flip, "p2": s["p2"] * flip, "kind": s["kind"]}
+        for s in segments
+    ]
 
 
 # --------------------------------------------------------------------------- #
 #  PLOTTING                                                                   #
 # --------------------------------------------------------------------------- #
 _KIND_STYLE = {
-    "main":    (MAIN_COLOR,    MAIN_WIDTH),
+    "main": (MAIN_COLOR, MAIN_WIDTH),
     "branch1": (BRANCH1_COLOR, BRANCH_WIDTH),
     "branch2": (BRANCH2_COLOR, BRANCH_WIDTH),
-    "normal":  (NORMAL_COLOR,  1.0),
+    "normal": (NORMAL_COLOR, 1.0),
 }
 
 
@@ -210,21 +213,27 @@ def plot_segments(ax, segments, points=None, alpha=1.0):
     for s in segments:
         color, width = _KIND_STYLE[s["kind"]]
         (x1, y1), (x2, y2) = s["p1"], s["p2"]
-        ax.plot([x1, x2], [y1, y2], color=color, lw=width, alpha=alpha,
-                solid_capstyle="round")
+        ax.plot(
+            [x1, x2],
+            [y1, y2],
+            color=color,
+            lw=width,
+            alpha=alpha,
+            solid_capstyle="round",
+        )
     if points:
         xs = [p[0] for p in points]
         ys = [p[1] for p in points]
-        ax.scatter(xs, ys, s=POINT_SIZE, color=POINT_COLOR,
-                   alpha=alpha, zorder=3)
+        ax.scatter(xs, ys, s=POINT_SIZE, color=POINT_COLOR, alpha=alpha, zorder=3)
 
 
 def _finish_axis(ax):
     ax.set_aspect("equal", adjustable="datalim")
-    ax.grid(True, ls=":", alpha=0.4)
-    ax.axhline(0, color="grey", lw=0.6)
-    ax.axvline(0, color="grey", lw=0.6)
-    ax.set_title("Branched lines")
+    ax.axis('off')  # Remove all axes
+    # ax.grid(True, ls=":", alpha=0.4)
+    # ax.axhline(0, color="grey", lw=0.6)
+    # ax.axvline(0, color="grey", lw=0.6)
+    ax.set_title("Midship sketch")
 
 
 # --------------------------------------------------------------------------- #
@@ -252,14 +261,74 @@ def draw_shape(a, b, n=DEFAULT_N, shape=DEFAULT_SHAPE, ax=None):
 
     if MIRROR_Y:
         flip = np.array([-1.0, 1.0])
-        plot_segments(ax, mirror_segments(segments),
-                      [p * flip for p in points], alpha=MIRROR_ALPHA)
+        plot_segments(
+            ax,
+            mirror_segments(segments),
+            [p * flip for p in points],
+            alpha=MIRROR_ALPHA,
+        )
 
     if own_axis:
         _finish_axis(ax)
         plt.show()
 
     return points, normal
+
+
+def branch_extreme_points(segments, mirror=False, group=False):
+    """
+    Collect the extreme (end) points of every first and second branch.
+
+    `segments` is the same list passed to draw_segments(): each element is a
+    (point_a, point_b, N, shape) tuple.
+
+    For every interior point a line produces, there are 4 extreme points,
+    returned in this fixed order:
+        0 : first  branch foot  (the point sitting on the main line)
+        1 : first  branch tip
+        2 : second branch end A
+        3 : second branch end B
+    So each segment contributes 4 * N points (N = its interior-point count).
+    Note: for 'L1'/'L2' the second branch starts at the first branch tip, so
+    points 1 and 2 coincide for those shapes.
+
+    Parameters
+    ----------
+    mirror : if True, also append each point's y-axis reflection (x -> -x),
+             matching the mirrored twin in the plot (doubles the count).
+    group  : if True, return one list per segment instead of one flat list.
+
+    Returns
+    -------
+    A flat list of (x, y) tuples (or, with group=True, a list of such lists).
+    """
+    flip = np.array([-1.0, 1.0])
+    all_groups = []
+
+    for a, b, n, shape in segments:
+        normal = line_normal(a, b)
+        seg_pts = []
+        for p in interior_points(a, b, n):
+            b1, b2 = build_branches(p, normal, shape)
+            for seg in (b1, b2):
+                for end in ("p1", "p2"):
+                    pt = seg[end]
+                    seg_pts.append((float(pt[0]), float(pt[1])))
+                    if mirror:
+                        m = pt * flip
+                        seg_pts.append((float(m[0]), float(m[1])))
+        all_groups.append(seg_pts)
+
+    if group:
+        return all_groups
+
+    aux_list = [pt for grp in all_groups for pt in grp]
+
+    # make segments with consecutive points, elem 0 and 1, 2 and 3, etc
+    segments = []
+    for i in range(0, len(aux_list) - 1, 2):
+        segments.append((aux_list[i], aux_list[i + 1]))
+    return segments
 
 
 def draw_segments(segments=None):
@@ -281,16 +350,3 @@ def draw_segments(segments=None):
 
     _finish_axis(ax)
     plt.show()
-    return results
-
-
-# --------------------------------------------------------------------------- #
-#  DEMO                                                                       #
-# --------------------------------------------------------------------------- #
-if __name__ == "__main__":
-    # Draws every line listed in the global LINE_SEGMENTS, each independently.
-    draw_segments()
-
-    # You can also pass an explicit list of (a, b, N, shape) tuples:
-    # draw_segments([((0, 0), (5, 5), 3, "T"),
-    #                ((0, 0), (5, -5), 3, "L2")])

@@ -237,7 +237,7 @@ def CreateBeamModel(variables):
     # TO WAIT FOR JOB COMPLETION
     mdb.jobs['Job-1'].waitForCompletion()
     print("SS I-beam Model finished running")
-    
+
 
 def PostProcessing():
     CurrentDir = os.getcwd()
