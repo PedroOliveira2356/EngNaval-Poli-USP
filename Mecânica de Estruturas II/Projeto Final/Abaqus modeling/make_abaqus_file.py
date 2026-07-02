@@ -46,7 +46,9 @@ Bt = R_canto + B1 + B2
 # Condicoes ambientais
 g = 9.81
 rho_mar = 1025.0
-# calado = 7.5
+calado = float(linhas[27][1])
+carga = float(linhas[28][1]) * g
+p_conves = carga / (2 * B1 * Comprimento_SM)
 
 # Material properties
 material_name = "Steel"
@@ -55,7 +57,7 @@ poiss = 0.3
 density_st = 7800.0
 
 # Mesh parameters
-mesh_size = 0.3
+mesh_seed = float(linhas[29][1])
 
 
 # Point mapping
@@ -125,7 +127,9 @@ total_segments = pure_segments + ref_segments
 
 
 def make_file():
-    model_param = """from part import *
+    part_name = "midship"
+
+    model_param = f"""from part import *
 from material import *
 from section import *
 from assembly import *
@@ -139,14 +143,15 @@ from sketch import *
 from visualization import *
 from connectorBehavior import *
 
+import regionToolset
+from abaqusConstants import *
+
 # Create new model
 Mdb()
 MyModel = mdb.models["Model-1"]
 """
 
     # Create part
-    part_name = "midship"
-
     model_param += f"""\n\ndef create_sketch():
     # Create new part: conves
     MyModel.ConstrainedSketch(name='__profile__', sheetSize=200.0)\n\n"""
@@ -161,7 +166,7 @@ MyModel = mdb.models["Model-1"]
     MyModel.parts['midship'].BaseShellExtrude(depth={Comprimento_SM}, sketch=
         MyModel.sketches['__profile__'])
     del MyModel.sketches['__profile__']
-    """
+"""
 
     # Create material
     model_param += f"""\n\ndef material():
@@ -172,7 +177,16 @@ MyModel = mdb.models["Model-1"]
 
     # Create section and assignments
     model_param += f"""\n\ndef section():
-    pass
+    MyModel.HomogeneousShellSection(idealization=NO_IDEALIZATION,
+        integrationRule=SIMPSON, material='{material_name}', name='chapa12',
+        nodalThicknessField='', numIntPts=5, poissonDefinition=DEFAULT,
+        preIntegrate=OFF, temperature=GRADIENT, thickness=12.0, thicknessField='',
+        thicknessModulus=None, thicknessType=UNIFORM, useDensity=OFF)
+
+    MyModel.parts['{part_name}'].SectionAssignment(offset=0.0, offsetField=
+        '', offsetType=MIDDLE_SURFACE, region=Region(
+        faces=MyModel.parts['{part_name}'].faces), sectionName='chapa12', thicknessAssignment=
+        FROM_SECTION)
 """
 
     # Create assembly
@@ -190,20 +204,102 @@ MyModel = mdb.models["Model-1"]
     MyModel.fieldOutputRequests['F-Output-1'].setValues(variables=('S', 'E', 'U', 'RF'))
 """
 
+    # Create function to get faces orientation correctly
+    model_param += f"""\n\ndef normalize_faces(selected_faces, surface_name):
+    # 2. Define your desired uniform orientation vector
+    target_vector = (0.0, 1.0, 0.0)
+
+    # 3. Loop and physically flip any face facing the wrong way
+    for face in selected_faces:
+        normal = face.getNormal()
+        dot_product = normal[0]*target_vector[0] + normal[1]*target_vector[1] + normal[2]*target_vector[2]
+
+        if dot_product < 0:
+            MyModel.parts['{part_name}'].flipNormal(regions=[face])
+
+    # 4. Now that the underlying geometry is unified, re-grab at Assembly level
+    # and safely assign everything to side1Faces
+    MyModel.rootAssembly.Surface(name=surface_name, side1Faces=selected_faces)
+"""
+
+    # Create sets of edges and faces
+    model_param += f"""\n\ndef sets():
+    p = MyModel.parts['{part_name}']
+    CG_y = p.getMassProperties()['centerOfMass'][1]
+
+    MyModel.rootAssembly.ReferencePoint(point=(0.0, CG_y, 0.0))
+    MyModel.rootAssembly.ReferencePoint(point=(0.0, CG_y, {Comprimento_SM}))
+
+    MyModel.rootAssembly.Set(edges=
+        MyModel.rootAssembly.instances['{part_name}-1'].edges.getByBoundingBox(
+            xMin={-Bt}, yMin=0.0, zMin=0.0, xMax={Bt}, yMax={Ht}, zMax=0.0),
+        name='EdgeSet-re')
+    MyModel.rootAssembly.Set(edges=
+        MyModel.rootAssembly.instances['{part_name}-1'].edges.getByBoundingBox(
+            xMin={-Bt}, yMin=0.0, zMin={Comprimento_SM}, xMax={Bt}, yMax={Ht}, zMax={Comprimento_SM}),
+        name='EdgeSet-vante')
+
+    normalize_faces(MyModel.rootAssembly.instances['{part_name}-1'].faces.getByBoundingBox(
+        xMin={-Bt}, yMin=0.0, zMin=0.0, xMax={-Bt}, yMax={calado}, zMax={Comprimento_SM}), 'Surf-lateral_1')
+
+    normalize_faces(MyModel.rootAssembly.instances['{part_name}-1'].faces.getByBoundingBox(
+        xMin={Bt}, yMin=0.0, zMin=0.0, xMax={Bt}, yMax={calado}, zMax={Comprimento_SM}), 'Surf-lateral_2')
+
+    normalize_faces(MyModel.rootAssembly.instances['{part_name}-1'].faces.getByBoundingBox(
+        xMin={-Bt}, yMin=0.0, zMin=0.0, xMax={Bt}, yMax=0.0, zMax={Comprimento_SM}), 'Surf-fundo')
+
+    normalize_faces(MyModel.rootAssembly.instances['{part_name}-1'].faces.getByBoundingBox(
+        xMin={-B1}, yMin={H_fundo}, zMin=0.0, xMax={B1}, yMax={H_fundo}, zMax={Comprimento_SM}), 'Surf-conves')
+"""
+
     # Create interactions
     model_param += f"""\n\ndef interaction():
-    pass
+    MyModel.RigidBody(name='Constraint-1', refPointRegion=Region(
+        referencePoints=(MyModel.rootAssembly.referencePoints[5], ))
+        , tieRegion=MyModel.rootAssembly.sets['EdgeSet-re'])
+
+    MyModel.RigidBody(name='Constraint-2', refPointRegion=Region(
+        referencePoints=(MyModel.rootAssembly.referencePoints[4], ))
+        , tieRegion=MyModel.rootAssembly.sets['EdgeSet-vante'])
 """
 
     # Create loads
     model_param += f"""\n\ndef loads():
-    pass
+    # Bondary Conditions
+    MyModel.DisplacementBC(amplitude=UNSET, createStepName='Step-1',
+        distributionType=UNIFORM, fieldName='', fixed=OFF, localCsys=None, name=
+        'Rot-RP', region=Region(referencePoints=(
+        MyModel.rootAssembly.referencePoints[5],
+        MyModel.rootAssembly.referencePoints[4], )), u1=UNSET, u2=
+        0.0, u3=0.0, ur1=UNSET, ur2=0.0, ur3=0.0)
+
+    # Loads
+    MyModel.ExpressionField(description='', expression=
+        f'{rho_mar}*{g}*({calado}-Y)', localCsys=None, name='AnalyticalField-1')
+    MyModel.Pressure(amplitude=UNSET, createStepName='Step-1',
+        distributionType=FIELD, field='AnalyticalField-1', magnitude=1.0, name=
+        'pressao_lateral_1', region=
+        MyModel.rootAssembly.surfaces['Surf-lateral_1'])
+    MyModel.Pressure(amplitude=UNSET, createStepName='Step-1',
+        distributionType=FIELD, field='AnalyticalField-1', magnitude=1.0, name=
+        'pressao_lateral_2', region=
+        MyModel.rootAssembly.surfaces['Surf-lateral_2'])
+
+    MyModel.Pressure(amplitude=UNSET, createStepName='Step-1',
+        distributionType=UNIFORM, field='', magnitude={rho_mar}*{g}*{calado}, name=
+        'pressao_fundo', region=
+        MyModel.rootAssembly.surfaces['Surf-fundo'])
+
+    MyModel.Pressure(amplitude=UNSET, createStepName='Step-1',
+        distributionType=UNIFORM, field='', magnitude={p_conves}, name=
+        'pressao_conves', region=
+        MyModel.rootAssembly.surfaces['Surf-conves'])
 """
 
     # creates the mesh
     model_param += f"""\n\ndef mesh():
     MyModel.parts['{part_name}'].seedPart(deviationFactor=0.1,
-        minSizeFactor=0.1, size={mesh_size})
+        minSizeFactor=0.1, size={mesh_seed})
     MyModel.parts['{part_name}'].generateMesh()
 """
 
@@ -216,8 +312,8 @@ MyModel = mdb.models["Model-1"]
         numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
         ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
 
-    mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
-    mdb.jobs['Job-1'].waitForCompletion()
+    # mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+    # mdb.jobs['Job-1'].waitForCompletion()
 """
 
     # functions call
@@ -226,10 +322,11 @@ material()
 section()
 assembly()
 step()
+sets()
 interaction()
 loads()
 mesh()
-# job()
+job()
 """
 
     # Write the model parameters to a Python file

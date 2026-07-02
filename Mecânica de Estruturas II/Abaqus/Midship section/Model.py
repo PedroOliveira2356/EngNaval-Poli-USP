@@ -276,7 +276,7 @@ def section():
         offsetField='', offsetType=MIDDLE_SURFACE, region=
         MyModel.parts['conves'].sets['Set-chapa14'], sectionName=
         'chapa14', thicknessAssignment=FROM_SECTION)
-    
+
     MyModel.parts['teto'].SectionAssignment(offset=0.0, offsetField=
         '', offsetType=MIDDLE_SURFACE, region=Region(
         faces=MyModel.parts['teto'].faces.getSequenceFromMask(mask=(
@@ -400,7 +400,6 @@ def interaction():
         ' #0:3 #50408000 #0:4 #1410080 #0:4 #42000 #0:4', 
         ' #2000 #0:4 #80 #0:4 #aa800042 #42aaaaaa #64542aa4', ' #aa4514 ]'), ), 
         name='Set-RP2')
-
     MyModel.RigidBody(name='Constraint-1', refPointRegion=Region(
         referencePoints=(MyModel.rootAssembly.referencePoints[49], ))
         , tieRegion=MyModel.rootAssembly.sets['Set-RP2'])
@@ -419,8 +418,8 @@ def loads():
     MyModel.XsymmBC(createStepName='Step-1', localCsys=None, name=
         'X_Symm', region=Region(
         faces=MyModel.rootAssembly.instances['Merged-1'].faces.getSequenceFromMask(
-        mask=('[#0:2 #2000000 #0:2 #8000 #0:2 #80002 #0:2', 
-        ' #1 #0 #4000 #0 #10000000 #0:2 #400', 
+        mask=('[#0:2 #2000000 #0:2 #8000 #0:2 #80002 #0:2',
+        ' #1 #0 #4000 #0 #10000000 #0:2 #400',
         ' #0 #1000000 #0:2 #40 #0 #100000 #0:2', ' #10 ]', ), )))
     MyModel.DisplacementBC(amplitude=UNSET, createStepName='Step-1', 
         distributionType=UNIFORM, fieldName='', fixed=OFF, localCsys=None, name=
@@ -428,34 +427,32 @@ def loads():
         MyModel.rootAssembly.referencePoints[48], 
         MyModel.rootAssembly.referencePoints[49], )), u1=UNSET, u2=
         0.0, u3=0.0, ur1=UNSET, ur2=0.0, ur3=0.0)
-    
 
-    # loads
+
+    # Loads
     MyModel.ExpressionField(description='', expression=
         f'{rho_mar}*{g}*({calado}-Y)', localCsys=None, name='AnalyticalField-1')
     MyModel.rootAssembly.Surface(name='Surf-lateral', side2Faces=
         MyModel.rootAssembly.instances['Merged-1'].faces.getSequenceFromMask(
-        ('[#0 #92940000 #13 #0 #2e4a5 #0 #d9294000', 
-        ' #0:2 #40800000 #3aa10 #0 #d9548000 #0 #20940000', 
-        ' #3488 #0 #125495 #0 #95254000 #4 #50000000', 
+        ('[#0 #92940000 #13 #0 #2e4a5 #0 #d9294000',
+        ' #0:2 #40800000 #3aa10 #0 #d9548000 #0 #20940000',
+        ' #3488 #0 #125495 #0 #95254000 #4 #50000000',
         ' #242249 #0 #44082400 #3a #0 #d9984 #c0', ' #8fc ]'), ))
-    MyModel.Pressure(amplitude=UNSET, createStepName='Step-1', 
+    MyModel.Pressure(amplitude=UNSET, createStepName='Step-1',
         distributionType=FIELD, field='AnalyticalField-1', magnitude=1.0, name=
         'pressao_lateral', region=
         MyModel.rootAssembly.surfaces['Surf-lateral'])
-    
+
     MyModel.rootAssembly.Surface(name='Surf-fundo', side2Faces=
         MyModel.rootAssembly.instances['Merged-1'].faces.getSequenceFromMask(
-        ('[#0:2 #8040100 #e5 #20100000 #390840 #0 #88408102', 
-        ' #2010000c #10041040 #84 #422082 #1081 #88208000 #24408', 
-        ' #20000000 #91022208 #0 #88820800 #2440 #82000000 #9102220', 
+        ('[#0:2 #8040100 #e5 #20100000 #390840 #0 #88408102',
+        ' #2010000c #10041040 #84 #422082 #1081 #88208000 #24408',
+        ' #20000000 #91022208 #0 #88820800 #2440 #82000000 #9102220',
         ' #0 #8882080 #244 #8200000 #84040404 #e0000020 #10f ]'), ))
-    MyModel.Pressure(amplitude=UNSET, createStepName='Step-1', 
+    MyModel.Pressure(amplitude=UNSET, createStepName='Step-1',
         distributionType=UNIFORM, field='', magnitude=rho_mar*g*calado, name=
         'pressao_fundo', region=
         MyModel.rootAssembly.surfaces['Surf-fundo'])
-
-    print(MyModel.rootAssembly.referencePoints)
 
     MyModel.Moment(cm1=1.0, cm2=2.0, cm3=3.0, createStepName='Step-1'
         , distributionType=UNIFORM, field='', follower=ON, localCsys=None, name=
@@ -524,8 +521,8 @@ caverna_teto()
 material()
 section()
 assembly()
-# step()
-# interaction()
-# loads()
-# mesh()
+step()
+interaction()
+loads()
+mesh()
 # job()
