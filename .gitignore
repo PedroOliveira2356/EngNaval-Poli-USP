@@ -135,6 +135,7 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+.mypy_cache/
 
 # .NET Core
 project.lock.json

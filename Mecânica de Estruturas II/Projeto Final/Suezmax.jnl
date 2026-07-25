@@ -1,0 +1,545 @@
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.jobs['Job-HSM1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-HSM1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'jobName': 'Job-HSM1', 'clientHost': 'CAD-15', 'handle': 0})
+mdb.jobs['Job-HSM1']._Message(ODB_FILE, {
+    'file': 'C:\\Users\\EPUSP\\Desktop\\Trabalho Final - Abaqus\\Job-HSM1.odb', 
+    'phase': BATCHPRE_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(COMPLETED, {'message': 'Analysis phase complete', 
+    'phase': BATCHPRE_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM1', 'clientHost': 'CAD-15', 'handle': 5168})
+mdb.jobs['Job-HSM1']._Message(STEP, {'stepId': 1, 'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(WARNING, {
+    'message': 'The 3-direction at one or more points in one or more layers in 9336 elements as defined in *ORIENTATION are in the opposite direction to the element normals. Either the 1 or 2 and the 3-direction defined in *ORIENTATION will be reversed. The elements have been identified in element set WarnElem3DirOppElemNormalStep1Inc1.', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(WARNING, {
+    'message': 'The local-3 direction (after additional rotation and permutation) of the material orientation , specified via *ORIENTATION, is in the plane of the SHELL, MEMBRANE, GASKET, COHESIVE, or SURFACE element. The local-1 direction will be projected onto the element surface and the positive element normal will be used as the local-3 direction. The elements have been identified in element set WarnElemUserNormMatOrient.', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(MEMORY_ESTIMATE, {'memory': 1412.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(PHYSICAL_MEMORY, {'physical_memory': 16126.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(MINIMUM_MEMORY, {'minimum_memory': 212.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 1, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.1, 'stepTime': 0.1, 'timeIncrement': 0.1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 2, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 2, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.2, 'stepTime': 0.2, 'timeIncrement': 0.1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 3, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 3, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.35, 'stepTime': 0.35, 'timeIncrement': 0.15, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 4, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 4, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.575, 'stepTime': 0.575, 'timeIncrement': 0.225, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 5, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 5, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.9125, 'stepTime': 0.9125, 'timeIncrement': 0.3375, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 6, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 6, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 1.0, 'stepTime': 1.0, 'timeIncrement': 0.0874999999999999, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(END_STEP, {'stepId': 1, 'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(COMPLETED, {'message': 'Analysis phase complete', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(JOB_COMPLETED, {
+    'time': 'Fri Jul  3 14:42:09 2026', 'jobName': 'Job-HSM1'})
+mdb.models['Suezmax'].loads['HSM2_HOG_RP1'].resume()
+mdb.models['Suezmax'].loads['HSM2_HOG_RP2'].resume()
+mdb.models['Suezmax'].loads['HSM1_SAG_RP1'].setValues(cm1=-13147300000.0, 
+    distributionType=UNIFORM, field='')
+mdb.models['Suezmax'].loads['HSM1_SAG_RP2'].setValues(cm1=13147300000.0, 
+    distributionType=UNIFORM, field='')
+mdb.models['Suezmax'].loads['HSM2_HOG_RP1'].setValues(cm1=13807600000.0, 
+    distributionType=UNIFORM, field='')
+mdb.models['Suezmax'].loads['HSM2_HOG_RP2'].setValues(cm1=-13807600000.0, 
+    distributionType=UNIFORM, field='')
+mdb.models['Suezmax'].loads['HSM2_HOG_RP1'].suppress()
+mdb.models['Suezmax'].loads['HSM2_HOG_RP2'].suppress()
+mdb.jobs['Job-HSM1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-HSM1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'jobName': 'Job-HSM1', 'clientHost': 'CAD-15', 'handle': 0})
+mdb.jobs['Job-HSM1']._Message(ODB_FILE, {
+    'file': 'C:\\Users\\EPUSP\\Desktop\\Trabalho Final - Abaqus\\Job-HSM1.odb', 
+    'phase': BATCHPRE_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(COMPLETED, {'message': 'Analysis phase complete', 
+    'phase': BATCHPRE_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM1', 'clientHost': 'CAD-15', 'handle': 8280})
+mdb.jobs['Job-HSM1']._Message(STEP, {'stepId': 1, 'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(WARNING, {
+    'message': 'The 3-direction at one or more points in one or more layers in 9336 elements as defined in *ORIENTATION are in the opposite direction to the element normals. Either the 1 or 2 and the 3-direction defined in *ORIENTATION will be reversed. The elements have been identified in element set WarnElem3DirOppElemNormalStep1Inc1.', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(WARNING, {
+    'message': 'The local-3 direction (after additional rotation and permutation) of the material orientation , specified via *ORIENTATION, is in the plane of the SHELL, MEMBRANE, GASKET, COHESIVE, or SURFACE element. The local-1 direction will be projected onto the element surface and the positive element normal will be used as the local-3 direction. The elements have been identified in element set WarnElemUserNormMatOrient.', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(MEMORY_ESTIMATE, {'memory': 1412.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(PHYSICAL_MEMORY, {'physical_memory': 16126.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(MINIMUM_MEMORY, {'minimum_memory': 212.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 1, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.1, 'stepTime': 0.1, 'timeIncrement': 0.1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 2, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 2, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.2, 'stepTime': 0.2, 'timeIncrement': 0.1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 3, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 3, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.35, 'stepTime': 0.35, 'timeIncrement': 0.15, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 4, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 4, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.575, 'stepTime': 0.575, 'timeIncrement': 0.225, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 5, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 5, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.9125, 'stepTime': 0.9125, 'timeIncrement': 0.3375, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 6, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 6, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 1.0, 'stepTime': 1.0, 'timeIncrement': 0.0874999999999999, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(END_STEP, {'stepId': 1, 'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(COMPLETED, {'message': 'Analysis phase complete', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(JOB_COMPLETED, {
+    'time': 'Fri Jul  3 14:55:00 2026', 'jobName': 'Job-HSM1'})
+mdb.models['Suezmax'].loads['Stiffeners1'].suppress()
+mdb.models['Suezmax'].loads['Stiffeners2'].suppress()
+mdb.models['Suezmax'].loads['Cargo4'].suppress()
+mdb.models['Suezmax'].loads['Cargo4'].resume()
+mdb.models['Suezmax'].loads['CBulkhead1'].suppress()
+mdb.models['Suezmax'].loads['CBulkhead1'].resume()
+mdb.models['Suezmax'].loads['CBulkhead2'].suppress()
+mdb.models['Suezmax'].loads['CBulkhead2'].resume()
+mdb.models['Suezmax'].loads['CBulkhead2'].suppress()
+mdb.models['Suezmax'].loads['CBulkhead1'].suppress()
+mdb.jobs['Job-HSM1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-HSM1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'jobName': 'Job-HSM1', 'clientHost': 'CAD-15', 'handle': 0})
+mdb.jobs['Job-HSM1']._Message(ODB_FILE, {
+    'file': 'C:\\Users\\EPUSP\\Desktop\\Trabalho Final - Abaqus\\Job-HSM1.odb', 
+    'phase': BATCHPRE_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(COMPLETED, {'message': 'Analysis phase complete', 
+    'phase': BATCHPRE_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM1', 'clientHost': 'CAD-15', 'handle': 752})
+mdb.jobs['Job-HSM1']._Message(STEP, {'stepId': 1, 'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(WARNING, {
+    'message': 'The 3-direction at one or more points in one or more layers in 9336 elements as defined in *ORIENTATION are in the opposite direction to the element normals. Either the 1 or 2 and the 3-direction defined in *ORIENTATION will be reversed. The elements have been identified in element set WarnElem3DirOppElemNormalStep1Inc1.', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(WARNING, {
+    'message': 'The local-3 direction (after additional rotation and permutation) of the material orientation , specified via *ORIENTATION, is in the plane of the SHELL, MEMBRANE, GASKET, COHESIVE, or SURFACE element. The local-1 direction will be projected onto the element surface and the positive element normal will be used as the local-3 direction. The elements have been identified in element set WarnElemUserNormMatOrient.', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(MEMORY_ESTIMATE, {'memory': 1412.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(PHYSICAL_MEMORY, {'physical_memory': 16126.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(MINIMUM_MEMORY, {'minimum_memory': 212.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 1, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.1, 'stepTime': 0.1, 'timeIncrement': 0.1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 2, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 2, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.2, 'stepTime': 0.2, 'timeIncrement': 0.1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 3, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 3, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.35, 'stepTime': 0.35, 'timeIncrement': 0.15, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 4, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 4, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.575, 'stepTime': 0.575, 'timeIncrement': 0.225, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 5, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 5, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.9125, 'stepTime': 0.9125, 'timeIncrement': 0.3375, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 6, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 6, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 1.0, 'stepTime': 1.0, 'timeIncrement': 0.0874999999999999, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(END_STEP, {'stepId': 1, 'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(COMPLETED, {'message': 'Analysis phase complete', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(JOB_COMPLETED, {
+    'time': 'Fri Jul  3 15:04:17 2026', 'jobName': 'Job-HSM1'})
+mdb.models['Suezmax'].loads['Stiffeners1'].resume()
+mdb.models['Suezmax'].loads['Stiffeners1'].suppress()
+mdb.models['Suezmax'].loads['Stiffeners1'].resume()
+mdb.models['Suezmax'].rootAssembly.Surface(name='CentralBulkhead1', side1Faces=
+    mdb.models['Suezmax'].rootAssembly.instances['HoldCargo-1'].faces.getSequenceFromMask(
+    ('[#0:8 #400000 #0:19 #8 #0:37 #10 #0:20', 
+    ' #8 #0:33 #40 #0:22 #8000 #0:22 #40000', 
+    ' #0:22 #8 #0:14 #800 #0:13 #fffe0000 #3ff ]'), ))
+mdb.models['Suezmax'].rootAssembly.Surface(name='CentralBulkhead2', side2Faces=
+    mdb.models['Suezmax'].rootAssembly.instances['HoldCargo-1'].faces.getSequenceFromMask(
+    ('[#0:8 #400000 #0:19 #8 #0:37 #10 #0:20', 
+    ' #8 #0:33 #40 #0:22 #8000 #0:22 #40000', 
+    ' #0:22 #8 #0:14 #800 #0:13 #fffe0000 #3ff ]'), ))
+mdb.models['Suezmax'].loads['Stiffeners1'].suppress()
+mdb.models['Suezmax'].loads['CBulkhead1'].resume()
+mdb.models['Suezmax'].loads['CBulkhead2'].resume()
+mdb.models['Suezmax'].loads['CBulkhead1'].setValues(region=
+    mdb.models['Suezmax'].rootAssembly.surfaces['CentralBulkhead1'])
+mdb.models['Suezmax'].loads['CBulkhead2'].setValues(region=
+    mdb.models['Suezmax'].rootAssembly.surfaces['CentralBulkhead2'])
+mdb.jobs['Job-HSM1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-HSM1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'jobName': 'Job-HSM1', 'clientHost': 'CAD-15', 'handle': 0})
+mdb.jobs['Job-HSM1']._Message(ODB_FILE, {
+    'file': 'C:\\Users\\EPUSP\\Desktop\\Trabalho Final - Abaqus\\Job-HSM1.odb', 
+    'phase': BATCHPRE_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(COMPLETED, {'message': 'Analysis phase complete', 
+    'phase': BATCHPRE_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM1', 'clientHost': 'CAD-15', 'handle': 11832})
+mdb.jobs['Job-HSM1']._Message(STEP, {'stepId': 1, 'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(WARNING, {
+    'message': 'The 3-direction at one or more points in one or more layers in 9336 elements as defined in *ORIENTATION are in the opposite direction to the element normals. Either the 1 or 2 and the 3-direction defined in *ORIENTATION will be reversed. The elements have been identified in element set WarnElem3DirOppElemNormalStep1Inc1.', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(WARNING, {
+    'message': 'The local-3 direction (after additional rotation and permutation) of the material orientation , specified via *ORIENTATION, is in the plane of the SHELL, MEMBRANE, GASKET, COHESIVE, or SURFACE element. The local-1 direction will be projected onto the element surface and the positive element normal will be used as the local-3 direction. The elements have been identified in element set WarnElemUserNormMatOrient.', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(MEMORY_ESTIMATE, {'memory': 1412.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(PHYSICAL_MEMORY, {'physical_memory': 16126.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(MINIMUM_MEMORY, {'minimum_memory': 212.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 1, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.1, 'stepTime': 0.1, 'timeIncrement': 0.1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 2, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 2, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.2, 'stepTime': 0.2, 'timeIncrement': 0.1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 3, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 3, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.35, 'stepTime': 0.35, 'timeIncrement': 0.15, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 4, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 4, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.575, 'stepTime': 0.575, 'timeIncrement': 0.225, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 5, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 5, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.9125, 'stepTime': 0.9125, 'timeIncrement': 0.3375, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 6, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 6, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 1.0, 'stepTime': 1.0, 'timeIncrement': 0.0874999999999999, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(END_STEP, {'stepId': 1, 'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(COMPLETED, {'message': 'Analysis phase complete', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(JOB_COMPLETED, {
+    'time': 'Fri Jul  3 15:21:39 2026', 'jobName': 'Job-HSM1'})
+mdb.meshEditOptions.setValues(enableUndo=True, maxUndoCacheElements=0.5)
+mdb.jobs['Job-HSM1'].submit(consistencyChecking=OFF, datacheckJob=True)
+mdb.jobs['Job-HSM1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'jobName': 'Job-HSM1', 'clientHost': 'CAD-15', 'handle': 0})
+mdb.jobs['Job-HSM1']._Message(ODB_FILE, {
+    'file': 'C:\\Users\\EPUSP\\Desktop\\Trabalho Final - Abaqus\\Job-HSM1.odb', 
+    'phase': BATCHPRE_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(COMPLETED, {'message': 'Analysis phase complete', 
+    'phase': BATCHPRE_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM1', 'clientHost': 'CAD-15', 'handle': 11764})
+mdb.jobs['Job-HSM1']._Message(STEP, {'stepId': 1, 'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(WARNING, {
+    'message': 'The 3-direction at one or more points in one or more layers in 9336 elements as defined in *ORIENTATION are in the opposite direction to the element normals. Either the 1 or 2 and the 3-direction defined in *ORIENTATION will be reversed. The elements have been identified in element set WarnElem3DirOppElemNormalStep1Inc1.', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(WARNING, {
+    'message': 'The local-3 direction (after additional rotation and permutation) of the material orientation , specified via *ORIENTATION, is in the plane of the SHELL, MEMBRANE, GASKET, COHESIVE, or SURFACE element. The local-1 direction will be projected onto the element surface and the positive element normal will be used as the local-3 direction. The elements have been identified in element set WarnElemUserNormMatOrient.', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(MEMORY_ESTIMATE, {'memory': 1099.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(PHYSICAL_MEMORY, {'physical_memory': 16126.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(MINIMUM_MEMORY, {'minimum_memory': 234.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(COMPLETED, {'message': 'Analysis phase complete', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(JOB_COMPLETED, {
+    'time': 'Fri Jul  3 15:31:56 2026', 'jobName': 'Job-HSM1'})
+# Save by aluno on 2026_07_03-15.33.19; build 2024 2023_09_21-09.55.25 RELr426 190762
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Suezmax'].parts['HoldCargo'].deleteMesh(regions=
+    mdb.models['Suezmax'].parts['HoldCargo'].faces.getSequenceFromMask((
+    '[#ffffffff:246 ]', ), ))
+mdb.models['Suezmax'].parts['HoldCargo'].setMeshControls(elemShape=QUAD, 
+    regions=mdb.models['Suezmax'].parts['HoldCargo'].faces.getSequenceFromMask(
+    ('[#ffffffff:246 ]', ), ))
+mdb.models['Suezmax'].parts['HoldCargo'].generateMesh()
+mdb.models['Suezmax'].rootAssembly.regenerate()
+mdb.jobs['Job-HSM1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-HSM1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'jobName': 'Job-HSM1', 'clientHost': 'CAD-15', 'handle': 0})
+mdb.jobs['Job-HSM1']._Message(WARNING, {
+    'message': '64 elements are distorted. Either the isoparametric angles are out of the suggested limits or the triangular or tetrahedral quality measure is bad. The elements have been identified in element set WarnElemDistorted.', 
+    'phase': BATCHPRE_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FILE, {
+    'file': 'C:\\Users\\EPUSP\\Desktop\\Trabalho Final - Abaqus\\Job-HSM1.odb', 
+    'phase': BATCHPRE_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(COMPLETED, {'message': 'Analysis phase complete', 
+    'phase': BATCHPRE_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM1', 'clientHost': 'CAD-15', 'handle': 10716})
+mdb.jobs['Job-HSM1']._Message(STEP, {'stepId': 1, 'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(WARNING, {
+    'message': 'The 3-direction at one or more points in one or more layers in 9858 elements as defined in *ORIENTATION are in the opposite direction to the element normals. Either the 1 or 2 and the 3-direction defined in *ORIENTATION will be reversed. The elements have been identified in element set WarnElem3DirOppElemNormalStep1Inc1.', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(WARNING, {
+    'message': 'The local-3 direction (after additional rotation and permutation) of the material orientation , specified via *ORIENTATION, is in the plane of the SHELL, MEMBRANE, GASKET, COHESIVE, or SURFACE element. The local-1 direction will be projected onto the element surface and the positive element normal will be used as the local-3 direction. The elements have been identified in element set WarnElemUserNormMatOrient.', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(MEMORY_ESTIMATE, {'memory': 1507.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(PHYSICAL_MEMORY, {'physical_memory': 16126.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(MINIMUM_MEMORY, {'minimum_memory': 225.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 1, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.1, 'stepTime': 0.1, 'timeIncrement': 0.1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 2, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 2, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.2, 'stepTime': 0.2, 'timeIncrement': 0.1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 3, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 3, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.35, 'stepTime': 0.35, 'timeIncrement': 0.15, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 4, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 4, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.575, 'stepTime': 0.575, 'timeIncrement': 0.225, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 5, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 5, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.9125, 'stepTime': 0.9125, 'timeIncrement': 0.3375, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(ODB_FRAME, {'step': 0, 'frame': 6, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(STATUS, {'step': 1, 'increment': 6, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 1.0, 'stepTime': 1.0, 'timeIncrement': 0.0874999999999999, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(END_STEP, {'stepId': 1, 'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(COMPLETED, {'message': 'Analysis phase complete', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM1'})
+mdb.jobs['Job-HSM1']._Message(JOB_COMPLETED, {
+    'time': 'Fri Jul  3 15:43:29 2026', 'jobName': 'Job-HSM1'})
+mdb.models['Suezmax'].loads['HSM2_HOG_RP1'].resume()
+mdb.models['Suezmax'].loads['HSM2_HOG_RP2'].resume()
+mdb.models['Suezmax'].loads['HSM1_SAG_RP1'].suppress()
+mdb.models['Suezmax'].loads['HSM1_SAG_RP1'].resume()
+mdb.models['Suezmax'].loads['HSM1_SAG_RP2'].suppress()
+mdb.models['Suezmax'].loads['HSM1_SAG_RP1'].suppress()
+# Save by aluno on 2026_07_03-17.00.58; build 2024 2023_09_21-09.55.25 RELr426 190762
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.jobs['Job-HSM2'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-HSM2']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'jobName': 'Job-HSM2', 'clientHost': 'CAD-15', 'handle': 0})
+mdb.jobs['Job-HSM2']._Message(WARNING, {
+    'message': '64 elements are distorted. Either the isoparametric angles are out of the suggested limits or the triangular or tetrahedral quality measure is bad. The elements have been identified in element set WarnElemDistorted.', 
+    'phase': BATCHPRE_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(ODB_FILE, {
+    'file': 'C:\\Users\\EPUSP\\Desktop\\Trabalho Final - Abaqus\\Job-HSM2.odb', 
+    'phase': BATCHPRE_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(COMPLETED, {'message': 'Analysis phase complete', 
+    'phase': BATCHPRE_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM2', 'clientHost': 'CAD-15', 'handle': 19116})
+mdb.jobs['Job-HSM2']._Message(STEP, {'stepId': 1, 'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(WARNING, {
+    'message': 'The 3-direction at one or more points in one or more layers in 9858 elements as defined in *ORIENTATION are in the opposite direction to the element normals. Either the 1 or 2 and the 3-direction defined in *ORIENTATION will be reversed. The elements have been identified in element set WarnElem3DirOppElemNormalStep1Inc1.', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(WARNING, {
+    'message': 'The local-3 direction (after additional rotation and permutation) of the material orientation , specified via *ORIENTATION, is in the plane of the SHELL, MEMBRANE, GASKET, COHESIVE, or SURFACE element. The local-1 direction will be projected onto the element surface and the positive element normal will be used as the local-3 direction. The elements have been identified in element set WarnElemUserNormMatOrient.', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(ODB_FRAME, {'step': 0, 'frame': 0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(MEMORY_ESTIMATE, {'memory': 1507.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(PHYSICAL_MEMORY, {'physical_memory': 16126.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(MINIMUM_MEMORY, {'minimum_memory': 225.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(ODB_FRAME, {'step': 0, 'frame': 1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(STATUS, {'step': 1, 'increment': 1, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.1, 'stepTime': 0.1, 'timeIncrement': 0.1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(ODB_FRAME, {'step': 0, 'frame': 2, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(STATUS, {'step': 1, 'increment': 2, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.2, 'stepTime': 0.2, 'timeIncrement': 0.1, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(ODB_FRAME, {'step': 0, 'frame': 3, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(STATUS, {'step': 1, 'increment': 3, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.35, 'stepTime': 0.35, 'timeIncrement': 0.15, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(ODB_FRAME, {'step': 0, 'frame': 4, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(STATUS, {'step': 1, 'increment': 4, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.575, 'stepTime': 0.575, 'timeIncrement': 0.225, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(ODB_FRAME, {'step': 0, 'frame': 5, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(STATUS, {'step': 1, 'increment': 5, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 0.9125, 'stepTime': 0.9125, 'timeIncrement': 0.3375, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(ODB_FRAME, {'step': 0, 'frame': 6, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(STATUS, {'step': 1, 'increment': 6, 
+    'attempts': 1, 'severe': 0, 'equilibrium': 1, 'iterations': 1, 
+    'totalTime': 1.0, 'stepTime': 1.0, 'timeIncrement': 0.0874999999999999, 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(END_STEP, {'stepId': 1, 'phase': STANDARD_PHASE, 
+    'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(COMPLETED, {'message': 'Analysis phase complete', 
+    'phase': STANDARD_PHASE, 'jobName': 'Job-HSM2'})
+mdb.jobs['Job-HSM2']._Message(JOB_COMPLETED, {
+    'time': 'Fri Jul  3 17:02:24 2026', 'jobName': 'Job-HSM2'})
+# Save by aluno on 2026_07_03-17.18.25; build 2024 2023_09_21-09.55.25 RELr426 190762
+# Save by aluno on 2026_07_03-17.22.12; build 2024 2023_09_21-09.55.25 RELr426 190762
+# Save by aluno on 2026_07_03-17.26.27; build 2024 2023_09_21-09.55.25 RELr426 190762
