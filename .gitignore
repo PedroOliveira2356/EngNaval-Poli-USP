@@ -146,3 +146,7 @@ artifacts/
 *.swo
 *~
 .DS_Store
+
+# Outros
+.claude
+.*venv

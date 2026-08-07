@@ -1,0 +1,2 @@
+- Revisar todos os EPs
+- Atualizar listas com o pyomo

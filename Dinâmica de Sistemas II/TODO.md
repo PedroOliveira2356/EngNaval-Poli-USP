@@ -1,0 +1,1 @@
+- Revisar todos os EPs e adicionar as partes que faltam
