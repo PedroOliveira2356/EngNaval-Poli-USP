@@ -1,0 +1,2 @@
+- Revisar todos os EPs
+- Implementar com objetos
