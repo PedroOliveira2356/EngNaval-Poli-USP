@@ -1,2 +1,3 @@
 - Revisar todos os EPs
 - Atualizar listas com o pyomo
+    - https://www.datacamp.com/tutorial/pyomo?utm_cid=19589720821&utm_aid=157156375191&utm_campaign=230119_1-ps-other~dsa~tofu_2-b2c_3-emea_4-prc_5-na_6-na_7-le_8-pdsh-go_9-nb-e_10-na_11-na&utm_loc=9045630-&utm_mtd=-c&utm_kw=&utm_source=google&utm_medium=paid_search&utm_content=ps-other~emea-en~dsa~tofu~tutorial~python&gad_source=1&gad_campaignid=19589720821&gbraid=0AAAAADQ9WsGDMD37F6CrwYFlvnTrItUlk&gclid=EAIaIQobChMI_5ir-KeSkQMVeptQBh1fMyzFEAAYASAAEgI04fD_BwE
