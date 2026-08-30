@@ -58,3 +58,15 @@ def C_I(c_wl):
 def C_IL(c_wl):
     # Coef de inercia longitudinal do plano de linha dagua
     return 0.35 * c_wl**2 - 0.405 * c_wl + 0.146
+
+
+def KG(depth):
+    return 0.69 * depth
+
+
+def GM(kb, bm, kg):
+    return kb + bm - kg
+
+
+def LCB(c_p):
+    return -13.5 + 19.4*c_p
