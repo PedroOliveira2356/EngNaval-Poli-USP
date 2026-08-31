@@ -69,4 +69,4 @@ def GM(kb, bm, kg):
 
 
 def LCB(c_p):
-    return -13.5 + 19.4*c_p
+    return -13.5 + 19.4 * c_p
