@@ -1,6 +1,10 @@
 import math
 
 
+def Fn(vs, l):
+    return vs / math.sqrt(9.81 * l)
+
+
 def deslocamento(c_b, l, b, draft):
     return 1.025 * 1.005 * c_b * l * b * draft
 

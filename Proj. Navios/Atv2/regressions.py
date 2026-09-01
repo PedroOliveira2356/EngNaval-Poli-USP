@@ -1,3 +1,4 @@
+# Comprimento entre perpendiculares
 def LBP_dwt(dwt):
     return 77.98 + 0.00301 * dwt - 1.598e-08 * dwt**2 + 2.876e-14 * dwt**3
 
@@ -15,6 +16,7 @@ def LBP_TUD(dwt):
     return 41.647 * dwt**0.133
 
 
+# Boca
 def B_dwt(dwt):
     return 14.9 + 0.0003423 * dwt - 6.641e-10 * dwt**2
 
@@ -27,6 +29,7 @@ def B_TUD(dwt):
     return min(15.04 + 0.000369 * dwt, 32.2)
 
 
+# Pontal
 def D_dwt(dwt):
     return (
         5.39
@@ -45,6 +48,7 @@ def D_TUD(dwt):
     return 9.69 + 0.000188 * dwt
 
 
+# Calado
 def d_dwt(dwt):
     return 5.319 + 0.0001673 * dwt - 8.836e-10 * dwt**2 + 1.686e-15 * dwt**3
 
