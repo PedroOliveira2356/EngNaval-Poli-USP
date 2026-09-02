@@ -5,13 +5,34 @@ def Fn(vs, l):
     return vs / math.sqrt(9.81 * l)
 
 
-def deslocamento(c_b, l, b, draft):
-    return 1.025 * 1.005 * c_b * l * b * draft
+def vol_desl(c_b, l, b, draft):
+    # volume deslocado em m3
+    return c_b * l * b * draft * 1.005
+
+
+def desl(c_b, l, b, draft):
+    # deslocamento em ton
+    return 1.025 * vol_desl(c_b, l, b, draft)
+
+
+def C_alm(c_b, l, b, draft, pot, vs):
+    # Coef de almirantado
+    return desl(c_b, l, b, draft)**(2/3) * vs**3 / pot
 
 
 def C_b_Wat(fn):
     # Coef de bloco - Watson e Gilfillan
     return 0.7 + math.atan((23 - 100 * fn) / 4) / 8
+
+
+def C_DWT(dwt, desloc):
+    # Coef de porte bruto
+    return dwt / desloc
+
+
+def W_PL(dwt, desloc):
+    # Peso líquido do navio
+    return desloc / (1 + C_DWT(dwt, desloc))
 
 
 def C_b_Jap(fn):
@@ -64,13 +85,47 @@ def C_IL(c_wl):
     return 0.35 * c_wl**2 - 0.405 * c_wl + 0.146
 
 
+def BM_T(c_i, c_il, l, b, desloc):
+    # Metacentro transversal e longitudinal
+    return (c_i * l * b**3 / desloc, c_il * l**3 * b / desloc)
+
+
 def KG(depth):
     return 0.69 * depth
 
 
 def GM(kb, bm, kg):
-    return kb + bm - kg
+    return kb + bm - 1.03 * kg
 
 
 def LCB(c_p):
     return -13.5 + 19.4 * c_p
+
+
+def estimar_potencia_tanker(l, b, d, cb, vs):
+    """
+    Estima a potência necessária do motor (Brake Power) de um navio petroleiro 
+    usando o método simplificado da Superfície Molhada (Denny-Mumford).
+
+    Parâmetros:
+    l (float): Comprimento do navio (metros)
+    b (float): Boca do navio (metros)
+    d (float): Calado do navio (metros)
+    cb (float): Coeficiente de bloco
+    vs (float): Velocidade de serviço (nós)
+
+    Retorna:
+    float: A potência efetiva do motor (kW).
+    """
+
+    # 1. Constantes estatísticas assumidas para petroleiros
+    rho = 1025.0       # Densidade da água do mar (kg/m³)
+    Ct = 0.0030        # Coeficiente de resistência total
+
+    # 3. Cálculo da Superfície Molhada (S) - Fórmula de Denny-Mumford
+    S = l * (cb * b + 1.7 * d)
+
+    # 4. Cálculo da Resistência Total (Rt) em Newtons
+    Rt = 0.5 * rho * Ct * S * (vs ** 2)
+
+    return (Rt * vs) / 1000.0
