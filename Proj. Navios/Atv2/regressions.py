@@ -1,14 +1,14 @@
 # Comprimento entre perpendiculares
 def LBP_dwt(dwt):
-    return 77.98 + 0.00301 * dwt - 1.598e-08 * dwt**2 + 2.876e-14 * dwt**3
+    return 75.72 + 0.003763 * dwt - 2.987e-08 * dwt**2 + 8.613e-14 * dwt**3
 
 
 def LBP_dwt_vs(dwt, vs):
     return (
-        -3.16425861316327e-9 * dwt**2
-        + 0.00163086454595442 * dwt
-        + 17.1400809131358 * vs
-        - 25.7937290885904
+        -8.03328214913538e-9 * dwt**2
+        + 0.0022750999603707 * dwt
+        + 11.778462148958 * vs
+        + 6.26122985125173
     )
 
 
@@ -18,11 +18,11 @@ def LBP_TUD(dwt):
 
 # Boca
 def B_dwt(dwt):
-    return 14.9 + 0.0003423 * dwt - 6.641e-10 * dwt**2
+    return 9.031 + 0.1036 * dwt ** (1 / 2)
 
 
 def B_lbp(lbp):
-    return -1.301 + 0.1825 * lbp
+    return -0.6694 + 0.1762 * lbp
 
 
 def B_TUD(dwt):
@@ -31,13 +31,7 @@ def B_TUD(dwt):
 
 # Pontal
 def D_dwt(dwt):
-    return (
-        5.39
-        + 0.0004656 * dwt
-        - 4.659e-09 * dwt**2
-        + 1.957e-14 * dwt**3
-        - 2.762e-20 * dwt**4
-    )
+    return 5.63 + 0.0004612 * dwt - 4.425e-09 * dwt**2 + 1.416e-14 * dwt**3
 
 
 def D_b(b):
@@ -50,8 +44,13 @@ def D_TUD(dwt):
 
 # Calado
 def d_dwt(dwt):
-    return 5.319 + 0.0001673 * dwt - 8.836e-10 * dwt**2 + 1.686e-15 * dwt**3
+    return 5.091 + 0.0002359 * dwt - 2.259e-09 * dwt**2 + 7.891e-15 * dwt**3
 
 
 def d_TUD(dwt):
     return 7.41 + 0.000106 * dwt
+
+
+# Froud
+def Fn_dwt(dwt):
+    return 0.2353 - 0.0002292 * dwt ** (1 / 2)
