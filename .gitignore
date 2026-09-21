@@ -23,7 +23,6 @@ iconcache.db
 [Tt]emporary Internet Files/
 [Ww]indows/[Tt]emp/
 docs/
-not*/
 
 # Arquivos outputs do Abaqus
 *.odb
@@ -41,6 +40,9 @@ not*/
 *.prt
 *.023
 *.ipm
+
+# Arquivos outputs do Rhino
+*.3dmbak
 
 # Configurações de ambiente do Windows
 .vscode/
