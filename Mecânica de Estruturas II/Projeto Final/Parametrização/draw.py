@@ -20,12 +20,12 @@ A global LINE_SEGMENTS list holds one (point_a, point_b, N, shape) tuple per
 line; the drawing is built by analysing each tuple independently.
 """
 
-import os
 import csv
+import os
 from pathlib import Path
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 # --------------------------------------------------------------------------- #
 #  GLOBAL PARAMETERS FROM INPUT FILE                                          #
@@ -229,7 +229,7 @@ def plot_segments(ax, segments, points=None, alpha=1.0):
 
 def _finish_axis(ax):
     ax.set_aspect("equal", adjustable="datalim")
-    ax.axis('off')  # Remove all axes
+    ax.axis("off")  # Remove all axes
     # ax.grid(True, ls=":", alpha=0.4)
     # ax.axhline(0, color="grey", lw=0.6)
     # ax.axvline(0, color="grey", lw=0.6)

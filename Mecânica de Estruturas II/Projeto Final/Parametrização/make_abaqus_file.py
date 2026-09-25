@@ -1,5 +1,5 @@
-import os
 import csv
+import os
 from pathlib import Path
 
 from draw import *
@@ -25,19 +25,21 @@ Comprimento_SM = float(linhas[9][1])
 # Ref_T = [float(linhas[10][1]), float(linhas[10][2])]
 # Ref_L = [float(linhas[11][1]), float(linhas[11][2])]
 
-N_ref = [int(linhas[13][1]),
-         int(linhas[14][1]),
-         int(linhas[15][1]),
-         int(linhas[16][1]),
-         int(linhas[17][1]),
-         int(linhas[18][1]),
-         int(linhas[19][1]),
-         int(linhas[20][1]),
-         int(linhas[21][1]),
-         int(linhas[22][1]),
-         int(linhas[23][1]),
-         int(linhas[24][1]),
-         int(linhas[25][1]),]
+N_ref = [
+    int(linhas[13][1]),
+    int(linhas[14][1]),
+    int(linhas[15][1]),
+    int(linhas[16][1]),
+    int(linhas[17][1]),
+    int(linhas[18][1]),
+    int(linhas[19][1]),
+    int(linhas[20][1]),
+    int(linhas[21][1]),
+    int(linhas[22][1]),
+    int(linhas[23][1]),
+    int(linhas[24][1]),
+    int(linhas[25][1]),
+]
 
 # utils
 Ht = R_canto + H1 + H2 + H3 + H4
@@ -52,7 +54,7 @@ p_conves = carga / (2 * B1 * Comprimento_SM)
 
 # Material properties
 material_name = "Steel"
-young_mod_st = float(206e9)
+young_mod_st = 206e9
 poiss = 0.3
 density_st = 7800.0
 
@@ -129,7 +131,7 @@ total_segments = pure_segments + ref_segments
 def make_file():
     part_name = "midship"
 
-    model_param = f"""from part import *
+    model_param = """from part import *
 from material import *
 from section import *
 from assembly import *
@@ -152,15 +154,15 @@ MyModel = mdb.models["Model-1"]
 """
 
     # Create part
-    model_param += f"""\n\ndef create_sketch():
+    model_param += """\n\ndef create_sketch():
     # Create new part: conves
     MyModel.ConstrainedSketch(name='__profile__', sheetSize=200.0)\n\n"""
 
     for elem in total_segments:
         model_param += f"""    MyModel.sketches['__profile__'].Line(point1=({elem[0][0]}, {elem[0][1]}), point2=({elem[1][0]}, {elem[1][1]}))\n"""
 
-    model_param += f"""\n    MyModel.sketches['__profile__'].ArcByCenterEnds(center=({Bt-R_canto}, {R_canto}), direction=COUNTERCLOCKWISE, point1=({B1+B2}, {0.0}), point2=({Bt}, {R_canto}))\n"""
-    model_param += f"""    MyModel.sketches['__profile__'].ArcByCenterEnds(center=({-(Bt-R_canto)}, {R_canto}), direction=CLOCKWISE, point1=({-(B1+B2)}, {0.0}), point2=({-Bt}, {R_canto}))\n\n"""
+    model_param += f"""\n    MyModel.sketches['__profile__'].ArcByCenterEnds(center=({Bt - R_canto}, {R_canto}), direction=COUNTERCLOCKWISE, point1=({B1 + B2}, {0.0}), point2=({Bt}, {R_canto}))\n"""
+    model_param += f"""    MyModel.sketches['__profile__'].ArcByCenterEnds(center=({-(Bt - R_canto)}, {R_canto}), direction=CLOCKWISE, point1=({-(B1 + B2)}, {0.0}), point2=({-Bt}, {R_canto}))\n\n"""
 
     model_param += f"""    MyModel.Part(dimensionality=THREE_D, name='midship', type=DEFORMABLE_BODY)
     MyModel.parts['midship'].BaseShellExtrude(depth={Comprimento_SM}, sketch=
@@ -253,7 +255,7 @@ MyModel = mdb.models["Model-1"]
 """
 
     # Create interactions
-    model_param += f"""\n\ndef interaction():
+    model_param += """\n\ndef interaction():
     MyModel.RigidBody(name='Constraint-1', refPointRegion=Region(
         referencePoints=(MyModel.rootAssembly.referencePoints[5], ))
         , tieRegion=MyModel.rootAssembly.sets['EdgeSet-re'])
