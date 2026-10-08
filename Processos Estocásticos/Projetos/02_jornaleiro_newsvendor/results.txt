@@ -1,0 +1,13 @@
+=== Quantidade a comprar (1o estagio) ===
+    100.00 unidades
+
+=== Lucro esperado e por cenario ===
+  baixa  (p=0.25, demanda= 50): lucro =     350.00
+  media  (p=0.50, demanda=100): lucro =   1,500.00
+  alta   (p=0.25, demanda=150): lucro =   1,250.00
+
+  Lucro esperado (valor otimo do SP) =   1,150.00
+
+=== Comparacao com informacao perfeita (wait-and-see) ===
+  Lucro esperado com informacao perfeita:   1,500.00
+  EVPI (Expected Value of Perfect Information) =     350.00

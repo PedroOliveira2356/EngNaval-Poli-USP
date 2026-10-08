@@ -1,0 +1,20 @@
+=== Plantio de 1o estagio (acres) ===
+  trigo     :   170.00
+  milho     :    80.00
+  beterraba :   250.00
+
+=== Lucro esperado e por cenario ===
+  ruim   (p=0.33): lucro =    48,820.00
+  medio  (p=0.33): lucro =   109,350.00
+  bom    (p=0.33): lucro =   167,000.00
+
+  Lucro esperado (valor otimo do SP) =   108,390.00
+
+=== Comparacao com a solucao 'Expected Value' (so cenario medio) ===
+  Plantio EV: {'trigo': 120.0, 'milho': 80.0, 'beterraba': 300.0}
+  Lucro esperado real usando o plantio do EV:   107,240.00
+  VSS (Value of Stochastic Solution) =     1,150.00
+
+=== Comparacao com informacao perfeita (wait-and-see) ===
+  Lucro esperado com informacao perfeita:   115,405.56
+  EVPI (Expected Value of Perfect Information) =     7,015.56
