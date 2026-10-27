@@ -1,0 +1,18 @@
+=== Capacidade instalada (1o estagio, MW) ===
+  Carvao  :   500.00
+  Gas     :   400.00
+  Nuclear :   136.29
+  Eolica  :   109.52
+
+=== Custo total esperado e por cenario ===
+  cenario_1    (p=0.20): custo =   1,564,361.48
+  cenario_2    (p=0.20): custo =   1,612,782.18
+  cenario_3    (p=0.20): custo =   1,579,672.86
+  cenario_4    (p=0.20): custo =   1,648,049.01
+  cenario_5    (p=0.20): custo =   1,537,897.43
+
+  Custo total esperado (valor otimo do SP) =   1,588,552.59
+
+=== Comparacao com informacao perfeita (wait-and-see) ===
+  Custo esperado com informacao perfeita:   1,349,308.68
+  EVPI (Expected Value of Perfect Information) =     239,243.92

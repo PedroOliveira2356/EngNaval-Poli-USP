@@ -1,0 +1,10 @@
+=== Alocacao otima da carteira (1o estagio) ===
+  Acoes       : $   242,666.54  ( 24.3%)
+  Titulos     : $   290,395.66  ( 29.0%)
+  Ouro        : $         0.00  (  0.0%)
+  ImoveisFII  : $   466,937.80  ( 46.7%)
+
+  Retorno esperado da carteira:  6.00% a.a.
+  VaR (95%)  (zeta): $    64,452.85
+  CVaR (95%) (objetivo): $    95,452.18
+  (CVaR = perda media esperada, condicionada aos 5% piores cenarios)
