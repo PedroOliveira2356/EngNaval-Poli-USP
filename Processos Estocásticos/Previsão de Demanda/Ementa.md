@@ -1,0 +1,4 @@
+- Series temporais: suavizamento exponencial com tendência e sazonalidade
+- Modelos causais de previsão: correlação linear simples e multivariada
+- Regressão de Séries Temporais. Teste de Durbin-Watson
+- ARIMA: Modelo Auto-regressivo integrado com Média Movel. Teste de Dickey-Fuller para Series estacionárias. Teste de Ljung-Box-Pierce. Critério de informação de Akaike. Metodologia Box-Jenkins

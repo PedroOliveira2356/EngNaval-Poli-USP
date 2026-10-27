@@ -13,6 +13,10 @@ Modelagem e análise de processos estocásticos aplicados a dados portuários e 
 | [`Atv2.ipynb`](Atv2.ipynb) | Seleção automática do melhor ARIMA por grid-search em (p,d,q) via AIC e previsão de duas séries temporais |
 | `2024TemposAtracacao.xlsx` | Dataset ANTAQ — tempos de atracação (entrada de dados para Atv1) |
 | `Atv2.xlsx` | Séries temporais para modelagem em Atv2 |
+| [`Estatística/Estimacao_Testes_Hipotese.ipynb`](Estat%C3%ADstica/Estimacao_Testes_Hipotese.ipynb) | Estimação pontual, TLC, intervalos de confiança (Z/t) e testes de hipótese sobre a média, com simulações e resolução dos exercícios propostos |
+| [`pyomo_stoc.ipynb`](pyomo_stoc.ipynb) | Introdução à arquitetura do PySP/Pyomo para programação estocástica de dois estágios |
+| [`proc_estoc.ipynb`](proc_estoc.ipynb) | PySP (exemplos de newsvendor, planejamento de energia e portfólio) e cadeias de Markov (exemplo da autolocadora, cálculo de distribuição estacionária) |
+| [`Projetos/`](Projetos/) | Projetos completos de programação estocástica (forma extensiva em Pyomo): fazendeiro, newsvendor, planejamento de energia e portfólio (CVaR) |
 
 ## Atividade 1 — Porto de São Sebastião
 
